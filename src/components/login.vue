@@ -1,6 +1,7 @@
 <template>
   <div >
-    <h2>Essential Links</h2>
+    <img src="./static/vuelogo.jpg"/>
+    <h2>登录系统</h2>
       用户名:<input type="text" v-model="loginInfoVo.username" placeholder="请输入用户名" />
       <br/>
       密码：<input type="password" v-model="loginInfoVo.password" placeholder="请输入密码" />
@@ -20,6 +21,7 @@ export default {
       responseResult: []
     }
   },
+  // 两种方式定义前端路由：通过代理或者指定baseurl拼接请求地址
   methods: {
     login () {
       this.$axios
@@ -28,6 +30,7 @@ export default {
           password: this.loginInfoVo.password
         })
         .then(successResponse => {
+          debugger
           this.responseResult = JSON.stringify(successResponse.data)
           if (successResponse.data.code === 200) {
             this.$router.replace({path: '/index'})
